@@ -73,6 +73,8 @@ function buildCharts(sample) {
   //var sortedSamples = samples.sort((a, b) => a.sample_values - b.sample_values);
   //console.log(sortedSamples);
 
+//numpy sort
+
   // 4. Create a variable that filters the samples for the object with the desired sample number.
   var samplesArray = samples.filter(i => i.id == sample);
   //console.log(samplesArray);
@@ -127,7 +129,17 @@ function buildCharts(sample) {
   var bubbleLayout = {
     hoovermode:"closest",
     title: "Bacteria Cultures Per Sample",
-    xaxis: {title: "OTU ID"}
+    // margin: {
+    //   //b: 100,
+    //   t: 0,
+    // },
+    xaxis: {title: "OTU ID"},
+    // margin: {
+    //   //b: 100,
+    //   t: 30,
+    // },
+    //height: 550,
+    //width: 1000,
   };
 
   // 3. Use Plotly to plot the data with the layout.
@@ -150,10 +162,14 @@ function buildCharts(sample) {
   var gaugeData = [{
     value:washFreq,
     title:"Belly Button Washing Frequency", 
+    annotations:[{text: "Scrubs Per Week"}],
     type:"indicator",
     mode:"gauge+number",
     gauge: {
       axis: {range: [0,10]},
+      // tickmode: "auto",
+      // nticks: 5,
+      // tickvals:[0/2/4/6/8/10],
       bar: {color:"black"},
       steps: [
         {range:[0,2],color:"red"},
